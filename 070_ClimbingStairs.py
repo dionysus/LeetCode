@@ -7,18 +7,13 @@ def climbStairs(n):
 
 	#fib(n) = fib(n-1) + fib(n-2)
 
-	sequence = []
+	sequence = [1,2]
 
-	for i in range (0, n):
-		if i == 0:
-			steps = 1
-		else:
-			if i == 1:
-				steps = 2
-			else:
-				steps = sequence[i-1] + sequence[i-2]
+	for i in range (0, n-2):
+
+		steps = sequence[i] + sequence[i+1]
 		sequence.append(steps)
 
-	return sequence[-1]
+	return sequence[n-1]
 
-print climbStairs(7)
+print climbStairs(2)
