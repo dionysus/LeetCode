@@ -1,18 +1,22 @@
 def lengthOfLastWord(s):
 	
-	sum = 0
+	def length(n):
+		sum = 0
+
+		if len(n) < 1 or n[-1] == ' ':
+			return sum
+
+		if n[-1] != ' ':
+			sum += 1
+		
+		return sum + length(n[:-1])
 
 	if len(s) < 1:
-		return sum
+			return 0
 
-	if s[-1] != ' ':
-		sum += 1
-		return sum + lengthOfLastWord(s[:-1])
-	
-	return sum
+	while s[-1] == ' ':
+		s = s[:-1]
 
-#n = ''
-#print n[-1]
-print lengthOfLastWord("")
-print lengthOfLastWord("a")
-print lengthOfLastWord("asdfs dfds")
+	return length(s)
+
+print lengthOfLastWord('  ')
