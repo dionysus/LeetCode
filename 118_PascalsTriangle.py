@@ -17,13 +17,12 @@ def generate(numRows):
 	list = []
 
 	for row in range (0, numRows):
-		newRow = []
+		list.append([])
 		for place in range (0, row+1):
 			if place == 0 or place == row:
-				newRow.append(1)
-			if place > 0 and place < row:
- 				newRow.append(list[row-1][place]+list[row-1][place-1])
-		list.append(newRow)
+				list[-1].append(1)
+			else:
+ 				list[-1].append(list[-2][place]+list[-2][place-1])
 	return list
 
-print generate(8)		
+print generate(6)		
