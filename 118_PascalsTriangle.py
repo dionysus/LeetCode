@@ -11,10 +11,21 @@
 # [1,4,6,4,1]
 #]
 
-class Solution(object):
-    def generate(self, numRows):
-        """
-        :type numRows: int
-        :rtype: List[List[int]]c
-        """
-        
+
+def generate(numRows):
+
+	list = []
+
+	for row in range (1, numRows + 1):
+
+		newRow = []
+
+		for place in range (1, numRows + 1):
+			if place == 1 or place == row:
+				newRow.append(1)
+			if place > 1 and place < row:
+ 				newRow.append(list[row-2][place-2]+list[row-2][place-1])
+		list.append(newRow)
+	return list
+
+print generate(6)		
