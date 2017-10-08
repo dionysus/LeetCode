@@ -1,9 +1,14 @@
-def single(list):
-	if list[0] in list[1:]:
-		list[1:].remove(list[0])
-		return single(list[1:])
-	else:
-		return list[0]
+def singleNumber(nums):
 
-list = [1,2,3,4,5,6,1,2,3,4,5]
-print single(list)
+	if len(nums) == 1:
+		return nums[0]
+
+	match = nums[1:].index(nums[0])
+	if match == -1:
+		return nums[0]
+	else:
+		del nums[match]
+		return singleNumber(nums[1:])
+
+list = [2,2,3,3,1,1,4]
+print singleNumber(list)
