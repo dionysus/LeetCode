@@ -7,6 +7,8 @@ def isPalindrome (s):
 
 		while not s[i].isalnum():
 			i += 1
+			if i == len(s):
+				return True
 
 		while not s[n].isalnum():
 			n -= 1
@@ -20,6 +22,6 @@ def isPalindrome (s):
 	return True
 
 
-s = 'A man, a plan, a canal: Panama' 
+s = '!@#yd' 
 
 print isPalindrome(s)
