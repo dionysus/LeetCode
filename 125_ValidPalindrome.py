@@ -1,19 +1,25 @@
 def isPalindrome (s):
 	
-	newString = ''
+	while len(s) > 1:
 
-	for i in s:
-		if i.isalnum():
-			if i.isalpha():
-				newString += i.lower()
-			else:
-				newString += i
+		i = 0
+		n = -1
 
-	for i in range (0, len(newString)/2):
-		if newString[i] != newString[-(i+1)]:
+		while not s[i].isalnum():
+			i += 1
+
+		while not s[n].isalnum():
+			n -= 1
+
+		if s[i].lower() != s[n].lower():
 			return False
+
+		else:
+			s = s[i+1:n]
 
 	return True
 
-s = 'A man, a plan, a canal: Panama! '
+
+s = 'A man, a plan, a canal: Panama' 
+
 print isPalindrome(s)
