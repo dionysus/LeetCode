@@ -45,18 +45,13 @@ def uniqueMorseRepresentations(words):
              "u": "..-", "v": "...-", "w":".--", "x": "-..-", "y": "-.--",
              "z": "--.."}
     
-    morsed = []
+    transformations = []
     
     for word in words:
         new_word = ''
         for ch in word:
             new_word += morse[ch]
-        morsed.append(new_word)
-    
-    transformations = []
-    
-    for code in morsed:
-        if code not in transformations:
-            transformations.append(code)
+        if new_word not in transformations:
+            transformations.append(new_word)
     
     return len(transformations)
