@@ -31,19 +31,17 @@ def hammingDistance(x, y):
     
     """
     
-    bins = [str(bin(x))[2:], str(bin(y))[2:]]
+    bins = [int(str(bin(x))[2:]), int(str(bin(y))[2:])]
     bins.sort()
-    
-    print(bins)
-    
+    bins = [str(bins[0]), str(bins[1])]
+
     ham = 0
     
     for i in range(1, len(bins[1]) + 1):
+        a = '0'
         if i <= len(bins[0]):
-            if bins[0][-i] != bins[1][-i]:
-                ham += 1
-        else:
-            if '0' != bins[1][-i]:
-                ham += 1 
-        
+            a = bins[0][-i]
+        if a != bins[1][-i]:
+            ham += 1
+        #print ('[', a, ':', bins[1][-i], ']', ':', ham)
     return ham
