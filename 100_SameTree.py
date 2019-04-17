@@ -8,6 +8,7 @@
 class Solution:
     def isSameTree(self, p: TreeNode, q: TreeNode) -> bool:
 
+        # Base Case
         if p is None and q is None:
             return True
 
@@ -17,9 +18,13 @@ class Solution:
         if p.val != q.val:
             return False
 
+        # Recursion
         else:
-            if not (self.isSameTree(p.left, q.left) and self.isSameTree(
-                    p.right, q.right)):
-                return False
+            # if not (self.isSameTree(p.left, q.left) and self.isSameTree(
+            #         p.right, q.right)):
+            #     return False
+            #
+            # return True
 
-            return True
+            return self.isSameTree(p.left, q.left) and self.isSameTree(
+                    p.right, q.right)
