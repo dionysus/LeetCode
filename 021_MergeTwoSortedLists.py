@@ -16,23 +16,21 @@ def mergeTwoLists(l1: ListNode, l2: ListNode) -> ListNode:
     if l1 is None and l2 is None:
         return None
 
-    curr1 = l1
-    curr2 = l2
     curr0_start = curr0 = ListNode(0)
 
-    while curr1 is not None and curr2 is not None:
-        if curr1.val <= curr2.val:
-            curr0.next = curr1
-            curr1 = curr1.next
+    while l1 is not None and l2 is not None:
+        if l1.val <= l2.val:
+            curr0.next = l1
+            l1 = l1.next
         else:
-            curr0.next = curr2
-            curr2 = curr2.next
+            curr0.next = l2
+            l2 = l2.next
         curr0 = curr0.next
 
-    if curr1 is None:
-        curr0.next = curr2
-    elif curr2 is None:
-        curr0.next = curr1
+    if l1 is None:
+        curr0.next = l2
+    elif l2 is None:
+        curr0.next = l1
 
     return curr0_start.next
 
