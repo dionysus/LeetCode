@@ -39,6 +39,7 @@ def removeDuplicates(nums: List[int]) -> int:
     while i < len(nums):
         if nums[i] != nums[j]:
             j += 1
-            nums[i], nums[j] = nums[j], nums[i]
+            if i - j > 0:
+                nums[i], nums[j] = nums[j], nums[i]
         i += 1
     return j + 1
