@@ -18,37 +18,43 @@ def addBinary(a: str, b: str) -> str:
 	Input strings are both non-empty and contains only characters 1 or 0.
 
 	>>> addBinary("1", "0")
-	"1"
+	'1'
+	>>> addBinary("11", "1")
+	'100'
+	>>> addBinary("1010", "1011")
+	'10101'
 	"""
+	# Base Case
 
-	if len(a) == len(b) == "0":
+	if len(a) < len(b):
+		a, b = b, a
+
+	if len(a) == 0:
 		return ""
+	# Recursive
+
+	# return addBinary(b, "")
+	if b == "":
+		if len(a) > 1:
+			rem = int(a[-1])
+		elif len(a) == 1:
+			rem = int(a[0])
+	elif len(b) == 1:
+		if len(a) > 1:
+			rem = int(a[-1]) + int(b[0])
+		elif len(a) == 1:
+			rem = int(a[0]) + int(b[0])
 	else:
-		if len(a) == 0:
-			num_a = 0
-		else:
-			num_a = int(a[-1])
-		if len(b) == 0:
-			num_b = 0
-		else:
-			num_b = int(b[-1])
+		rem = int(a[-1]) + int(b[-1])
 
-		num_c = num_a + num_b
-
-		if num_c >= 2:
-			if len(a) == 1:
-				new_a = str(num_c - 1)
-			else:
-				new_a = a[0:-2] + str(int(a[-2]) + num_c - 1)
-			return addBinary(new_a, b[:-1]) + "1"
+	if rem <= 1:
+		return addBinary(a[:-1], b[:-1]) + str(rem)
+	elif rem == 2:
+		if len(a) > 1:
+			new_a = a[:-2] + str(int(a[-2]) + 1)
+			return addBinary(new_a, b[:-1]) + "0"
 		else:
-			return addBinary(a[:-1], b[:-1]) + str(num_c)
-	"""
-	index of end
-	add pair + carry over
-	if greater than 1, carryover
-	return single str
-	"""
+			return "10"
 
 
 if __name__ == "__main__":
