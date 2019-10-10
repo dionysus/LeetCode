@@ -23,6 +23,35 @@ def addBinary(a: str, b: str) -> str:
 	>>> addBinary("1111", "1111")
 	'11110'
 	"""
+	c =	list(reversed(str(int(a) + int(b))))
+	i = 0
+	while i < len(c):
+		if int(c[i]) > 1:
+			c[i] = str(int(c[i]) - 2)
+
+			if i < len(c) - 1:
+				c[i + 1] = c[i] + '1'
+			else:
+				c.append("1")
+		i += 1
+	c.reverse()
+	c = "".join(c)
+	return c
+
+def addBinaryRecursive(a: str, b: str) -> str:
+	"""
+	Given two binary strings, return their sum (also a binary string).
+	Input strings are both non-empty and contains only characters 1 or 0.
+
+	>>> addBinaryRecursive("1", "0")
+	'1'
+	>>> addBinaryRecursive("11", "1")
+	'100'
+	>>> addBinaryRecursive("1010", "1011")
+	'10101'
+	>>> addBinaryRecursive("1111", "1111")
+	'11110'
+	"""
 	# Base Case
 
 	if len(a) < len(b):
@@ -36,11 +65,11 @@ def addBinary(a: str, b: str) -> str:
 		rem = int(a[max(0, len(a) - 1)]) + int(b[max(0, len(b) - 1)])
 
 	if rem <= 1:
-		return addBinary(a[:-1], b[:-1]) + str(rem)
+		return addBinaryRecursive(a[:-1], b[:-1]) + str(rem)
 	else:
 		if len(a) > 1:
 			new_a = a[:-2] + str(int(a[-2]) + 1)
-			return addBinary(new_a, b[:-1]) + str(rem - 2)
+			return addBinaryRecursive(new_a, b[:-1]) + str(rem - 2)
 		else:
 			return "1" + str(rem - 2)
 
