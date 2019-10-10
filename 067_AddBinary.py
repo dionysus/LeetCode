@@ -1,8 +1,5 @@
 """Given two binary strings, return their sum (also a binary string).
-
 The input strings are both non-empty and contains only characters 1 or 0.
-
-Example 1:
 
 Input: a = "11", b = "1"
 Output: "100"
@@ -23,38 +20,29 @@ def addBinary(a: str, b: str) -> str:
 	'100'
 	>>> addBinary("1010", "1011")
 	'10101'
+	>>> addBinary("1111", "1111")
+	'11110'
 	"""
 	# Base Case
 
 	if len(a) < len(b):
 		a, b = b, a
 
-	if len(a) == 0:
+	if a == "":
 		return ""
-	# Recursive
-
-	# return addBinary(b, "")
 	if b == "":
-		if len(a) > 1:
-			rem = int(a[-1])
-		elif len(a) == 1:
-			rem = int(a[0])
-	elif len(b) == 1:
-		if len(a) > 1:
-			rem = int(a[-1]) + int(b[0])
-		elif len(a) == 1:
-			rem = int(a[0]) + int(b[0])
+		rem = int(a[max(0, len(a) - 1)])
 	else:
-		rem = int(a[-1]) + int(b[-1])
+		rem = int(a[max(0, len(a) - 1)]) + int(b[max(0, len(b) - 1)])
 
 	if rem <= 1:
 		return addBinary(a[:-1], b[:-1]) + str(rem)
-	elif rem == 2:
+	else:
 		if len(a) > 1:
 			new_a = a[:-2] + str(int(a[-2]) + 1)
-			return addBinary(new_a, b[:-1]) + "0"
+			return addBinary(new_a, b[:-1]) + str(rem - 2)
 		else:
-			return "10"
+			return "1" + str(rem - 2)
 
 
 if __name__ == "__main__":
